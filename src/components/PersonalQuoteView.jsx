@@ -7,7 +7,9 @@ export default function PersonalQuoteView() {
 	const [personalQuote, setPersonalQuote] = useState("");
 	const dispatch = useDispatch();
 
-	useEffect(() => {});
+	useEffect(() => {
+		setPersonalQuote("");
+	}, [quotes]);
 
 	return (
 		<section style={{ textAlign: "center", marginTop: "60px" }}>
