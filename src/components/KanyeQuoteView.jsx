@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { add } from "../features/quotes/quotesSlice.js";
-import { useLazyGetQuoteQuery } from "../services/kanyeApi.js";
+import { getQuote, useLazyGetQuoteQuery } from "../services/kanyeApi.js";
 
 export default function KanyeQuoteView() {
 	const [trigger, { data: quote }] = useLazyGetQuoteQuery();
@@ -24,7 +24,13 @@ export default function KanyeQuoteView() {
 
 			{quote ? <h3>{quote.quote}</h3> : null}
 
-			<button onClick={() => dispatch(trigger())}>Get Quote</button>
+			<button
+				onClick={() =>
+					dispatch(getQuote.initiate(undefined, { forceRefetch: true }))
+				}
+			>
+				Get Quote
+			</button>
 			<button onClick={() => dispatch(add(quote.quote))}>Add Favorite</button>
 
 			{quotes.length === 0 ? null : (
