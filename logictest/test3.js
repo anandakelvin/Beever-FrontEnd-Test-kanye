@@ -23,7 +23,23 @@ OUTPUT:
 */
 
 function jumlahTabungan(listHarga, history) {
-	// Write your code here
+	const historyItems = history.split(".");
+	const savings = {};
+	for (const historyItem of historyItems) {
+		const day = historyItem.split("-")[0];
+		const dayExpenses = historyItem.split("-")[1].split(",");
+		const dayExpensesNum = dayExpenses.reduce((acc, val) => {
+			const makanan = listHarga.find((e) => e.nama === val);
+			return makanan.harga + acc;
+		}, 0);
+
+		savings[day] = 10000 - dayExpensesNum;
+	}
+	savings["TotalTabungan"] = Object.values(savings).reduce(
+		(acc, val) => acc + val,
+		0
+	);
+	return savings;
 }
 
 var hargaMakanan = [
