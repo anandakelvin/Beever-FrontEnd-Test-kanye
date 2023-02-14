@@ -1,17 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { add } from "../features/quotes/quotesSlice.js";
-import { getQuote, useLazyGetQuoteQuery } from "../services/kanyeApi.js";
+import { getQuote, useGetQuoteQuery } from "../services/kanyeApi.js";
 
 export default function KanyeQuoteView() {
-	const [trigger, { data: quote }] = useLazyGetQuoteQuery();
+	const { data: quote } = useGetQuoteQuery();
 	const quotes = useSelector((state) => state.quotes.value);
 
 	const dispatch = useDispatch();
-
-	useEffect(() => {
-		trigger();
-	}, [trigger]);
 
 	return (
 		<section style={{ textAlign: "center" }}>

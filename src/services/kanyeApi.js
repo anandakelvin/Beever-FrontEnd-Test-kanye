@@ -13,6 +13,6 @@ export const kanyeApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetQuoteQuery, useLazyGetQuoteQuery } = kanyeApi;
+export const { useGetQuoteQuery } = kanyeApi;
 
 export const { getQuote } = kanyeApi.endpoints;
